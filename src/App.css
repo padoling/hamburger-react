@@ -1,38 +1,91 @@
-.App {
+header {
+  height: 130px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.title {
+  float: left;
+  padding: 20px 30px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.menu {
+  float: right;
+  padding: 20px 30px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.menu .menu-btn {
+  display: inline-block;
+  padding: 30px 20px;
 }
 
-.App-link {
-  color: #61dafb;
+.menu .menu-btn .hamburger-icon {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 3px;
+  background: gray;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.menu .menu-btn .hamburger-icon::before,
+.menu .menu-btn .hamburger-icon::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 30px;
+  height: 3px;
+  background: gray;
+  transition: all .2s ease-out;
+}
+
+.menu .menu-btn .hamburger-icon::before {
+  top: -10px;
+}
+
+.menu .menu-btn .hamburger-icon::after {
+  top: 10px;
+}
+
+.menu .menu-btn .hamburger-icon.checked {
+  background: transparent;
+}
+
+.menu .menu-btn .hamburger-icon.checked::before,
+.menu .menu-btn .hamburger-icon.checked::after {
+  top: 0;
+}
+
+.menu .menu-btn .hamburger-icon.checked::before {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+.menu .menu-btn .hamburger-icon.checked::after {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.menu .dropdown-menu {
+  position: absolute;
+  right: 30px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+  max-height: 0;
+  background-color: wheat;
+  z-index: 1;
+  transition: max-height .2s ease-out;
+}
+
+.menu .dropdown-menu li {
+  font-size: 20px;
+  padding: 20px 100px;
+}
+
+.menu .dropdown-menu.checked {
+  max-height: 250px;
+}
+
+.content {
+  padding: 20px 30px;
 }
