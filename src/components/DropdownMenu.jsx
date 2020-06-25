@@ -1,22 +1,18 @@
 import React, {Component} from 'react';
-import store from "../store";
+import { connect } from 'react-redux';
 
-export default class DropdownMenu extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isChecked: store.getState().isChecked
-    };
-    store.subscribe(() => {
-      this.setState({isChecked: store.getState().isChecked})
-    });
-  }
+function mapStateToProps(state) {
+  return {
+    isChecked: state.isChecked
+  };
+}
 
+class DropdownMenu extends Component {
   render() {
     return(
       <ul className={
         'dropdown-menu ' + 
-        (this.state.isChecked ? 'checked' : '')}>
+        (this.props.isChecked ? 'checked' : '')}>
         <li>first</li>
         <li>second</li>
         <li>third</li>
@@ -25,3 +21,5 @@ export default class DropdownMenu extends Component {
     );
   }
 }
+
+export default connect(mapStateToProps)(DropdownMenu);

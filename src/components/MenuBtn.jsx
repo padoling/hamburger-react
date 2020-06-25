@@ -1,29 +1,33 @@
 import React, {Component} from 'react';
-import store from "../store";
+import { connect } from 'react-redux';
 
-export default class MenuBtn extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isChecked: store.getState().isChecked
-    };
-    store.subscribe(() => {
-      this.setState({isChecked: store.getState().isChecked});
-    });
-  }
+function mapStateToProps(state) {
+  return {
+    isChecked: state.isChecked
+  };
+}
 
+function mapDispatchToProps(dispatch) {
+  return {
+    onClick: () => {
+      dispatch({type: "CHECK"});
+    }
+  };
+}
+
+class MenuBtn extends Component {
   render() {
     return(
       <div 
         className='menu-btn' 
-        onClick={() => {
-          store.dispatch({type: "CHECK", isChecked: !this.state.isChecked});
-        }}>
+        onClick={this.props.onClick}>
         <span className={
           'hamburger-icon ' + 
-          (this.state.isChecked ? 'checked' : '')}>
+          (this.props.isChecked ? 'checked' : '')}>
         </span>
       </div>
     );
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(MenuBtn);
