@@ -3,7 +3,9 @@ import React, { Component } from "react";
 export default class Content extends Component {
   render() {
     return(
-      <div className='content'>
+      <div 
+        className='content'
+        style={{padding: '20px 30px'}}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et mollis tellus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Maecenas purus purus, varius eget tellus sit amet, suscipit auctor lacus. Maecenas semper, nisi sed tristique commodo, metus ex interdum nibh, sit amet aliquam massa sem eu nulla. Maecenas feugiat fermentum dolor eu vehicula. Vestibulum viverra id neque at convallis. Mauris lectus magna, suscipit sagittis aliquet at, iaculis sit amet felis. Mauris porta efficitur nisl, quis vestibulum tellus consequat sit amet. Nullam quis pellentesque elit, ac posuere velit. Phasellus orci purus, suscipit eget erat sit amet, facilisis mattis ipsum. Nam ut est non lectus porta viverra. Ut dapibus faucibus arcu, sit amet aliquet ligula iaculis sit amet. Duis pellentesque lorem eu enim sodales imperdiet. Phasellus egestas lorem leo, eget ullamcorper ex vehicula nec. Duis porttitor aliquam finibus. Sed enim metus, dignissim quis posuere vitae, consequat vel nulla.
 
 Nunc tincidunt, orci ut accumsan aliquam, mauris mauris volutpat mauris, sit amet malesuada arcu ex at nisl. Sed laoreet scelerisque dui nec dictum. Suspendisse ac luctus erat. Vestibulum lobortis leo id cursus eleifend. Nunc quis quam dapibus, scelerisque augue scelerisque, imperdiet quam. Donec eget auctor nunc, at maximus lorem. Nullam porttitor urna nec magna consectetur aliquam. Ut varius erat et risus scelerisque, vitae ultricies elit consectetur. Cras ut semper purus. Donec at hendrerit lorem. Suspendisse interdum velit tristique rutrum iaculis. In sagittis id metus in pretium. Suspendisse rutrum nunc nulla, non venenatis erat volutpat luctus. Vivamus a rutrum ligula. Aliquam quis enim magna. Aenean auctor nunc eget varius pellentesque.
