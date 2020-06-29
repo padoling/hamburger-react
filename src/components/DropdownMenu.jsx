@@ -4,19 +4,23 @@ import styled from 'styled-components';
 
 const StyledUl = styled.ul`
   position: absolute;
-  right: 30px;
+  right: 50px;
   margin: 0;
   padding: 0;
   list-style: none;
   overflow: hidden;
-  max-height: ${props => (props.isChecked ? '250px' : '0')};
-  background-color: wheat;
+  max-height: ${props => (props.isChecked ? '300px' : '0')};
+  background-color: white;
   z-index: 1;
   transition: max-height .2s ease-out;
 
   & li {
     font-size: 20px;
     padding: 20px 100px;
+  }
+
+  & li:hover {
+    background-color: #f1f1f1;
   }
 `;
 
