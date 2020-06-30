@@ -6,7 +6,7 @@ export default class Header extends Component {
   render() {
     return (
       <header
-        style={{height: '130px', textAlign: 'center'}}>
+        style={{height: '120px', textAlign: 'center'}}>
         <div 
           className='title'
           style={{float: 'left', padding: '20px 30px'}}>

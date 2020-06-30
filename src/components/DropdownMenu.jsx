@@ -16,7 +16,7 @@ const StyledUl = styled.ul`
 
   & li {
     font-size: 20px;
-    padding: 20px 100px;
+    padding: 20px 70px;
   }
 
   & li:hover {
@@ -36,7 +36,7 @@ class DropdownMenu extends Component {
       <StyledUl 
         className='dropdown-menu'
         isChecked={this.props.isChecked}>
-        <li>first</li>
+        <li>카카오 로그인</li>
         <li>second</li>
         <li>third</li>
         <li>fourth</li>
