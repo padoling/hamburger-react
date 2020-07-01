@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import KakaoLoginBtn from './KakaoLoginBtn';
 
 const StyledUl = styled.ul`
   position: absolute;
@@ -16,7 +17,7 @@ const StyledUl = styled.ul`
 
   & li {
     font-size: 20px;
-    padding: 20px 70px;
+    max-height: 49px;
   }
 
   & li:hover {
@@ -36,10 +37,9 @@ class DropdownMenu extends Component {
       <StyledUl 
         className='dropdown-menu'
         isChecked={this.props.isChecked}>
-        <li>카카오 로그인</li>
+        <li><KakaoLoginBtn /></li>
         <li>second</li>
         <li>third</li>
-        <li>fourth</li>
       </StyledUl>
     );
   }
