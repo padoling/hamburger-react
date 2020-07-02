@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import KakaoLoginBtn from './KakaoLoginBtn';
+import LogoutBtn from './LogoutBtn';
 
 const StyledUl = styled.ul`
   position: absolute;
@@ -27,7 +28,8 @@ const StyledUl = styled.ul`
 
 function mapStateToProps(state) {
   return {
-    isChecked: state.isChecked
+    isChecked: state.isChecked,
+    isLogin: state.isLogin
   };
 }
 
@@ -37,7 +39,7 @@ class DropdownMenu extends Component {
       <StyledUl 
         className='dropdown-menu'
         isChecked={this.props.isChecked}>
-        <li><KakaoLoginBtn /></li>
+        <li>{this.props.isLogin ? <LogoutBtn /> : <KakaoLoginBtn />}</li>
         <li>second</li>
         <li>third</li>
       </StyledUl>

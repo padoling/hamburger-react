@@ -1,33 +1,40 @@
 import React, {Component} from 'react';
-import KakaoLogin from 'react-kakao-login';
+import { connect } from 'react-redux';
 
-export default class KakaoLoginBtn extends Component {
-  state = {
-    imgSrc: 'https://kauth.kakao.com/public/widget/login/kr/kr_02_medium.png'
+function mapDispatchToProps(dispatch) {
+  return {
+    onSuccess: response => {
+      dispatch({ type: "LOGIN" });
+      console.log(response);
+    },
+    onFailure: response => {
+      dispatch({ type: "LOGIN_FAIL" });
+      alert('Login Failed. Error :', response)
+    }
+  };
+}
+
+class KakaoLoginBtn extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userNick: ''
+    };
+  }
+
+  componentDidMount() {
+    window.Kakao.Auth.createLoginButton({
+      container: '#create-kakao-login-btn',
+      success: response => this.props.onSuccess(response),
+      fail: response => this.props.onFailure(response)
+    })
   }
 
   render() {
     return(
-      <KakaoLogin 
-        render={() => (
-          <a id='create-kakao-login-btn'>
-            <img 
-              id='kakao-login-btn' 
-              src={this.state.imgSrc}
-              style={{cursor: "pointer"}} 
-              onMouseOver={() => {
-                this.setState({
-                  imgSrc: 'https://kauth.kakao.com/public/widget/login/kr/kr_02_medium_press.png'
-                })
-              }} 
-              onMouseOut={() => {
-                this.setState({
-                  imgSrc: 'https://kauth.kakao.com/public/widget/login/kr/kr_02_medium.png'
-                })
-              }} />
-          </a>
-        )}
-      />
+      <a id="create-kakao-login-btn" />
     );
   }
 }
+
+export default connect(null, mapDispatchToProps)(KakaoLoginBtn);
