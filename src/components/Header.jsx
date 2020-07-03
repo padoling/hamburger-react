@@ -1,8 +1,16 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 import MenuBtn from '../components/MenuBtn';
 import DropdownMenu from '../components/DropdownMenu';
 
-export default class Header extends Component {
+function mapStateToProps(state) {
+  return {
+    isLogin: state.isLogin,
+    userName: state.userName
+  };
+}
+
+class Header extends Component {
   render() {
     return (
       <header style={{height: '120px', textAlign: 'center'}}>
@@ -16,9 +24,15 @@ export default class Header extends Component {
           <DropdownMenu />
         </div>
         <div style={{float: 'right', padding: '20px 30px'}}>
-          <h3 style={{margin: '40px 0 17px 0'}}>Hello, visitor!</h3>
+          <h3 style={{margin: '40px 0 17px 0'}}>
+            {this.props.isLogin ? 
+            'Welcome, ' + this.props.userName + '!' : 
+            'Hello, visitor!'}
+          </h3>
         </div>
       </header>
     );
   }
 }
+
+export default connect(mapStateToProps)(Header);

@@ -3,31 +3,33 @@ import { connect } from 'react-redux';
 
 function mapDispatchToProps(dispatch) {
   return {
-    onSuccess: (response, history) => {
-      dispatch({ type: "LOGIN" });
-      console.log(response);
+    onSuccess: (authObj, history) => {
+      window.Kakao.API.request({
+        url: '/v2/user/me',
+        success: res => {
+          console.log('user info :', res);
+          dispatch({ type: "LOGIN", userName: res.kakao_account.profile.nickname});
+        },
+        fail: err => {
+          alert('login success, but failed to request user informateion: ', JSON.stringify(err));
+        }
+      })
+      console.log('authObj :', authObj);
       history.push('/');
     },
-    onFailure: response => {
+    onFailure: err => {
       dispatch({ type: "LOGIN_FAIL" });
-      alert('Login Failed. Error :', response)
+      alert('login Failed. Error :', err)
     }
   };
 }
 
 class KakaoLoginBtn extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      userNick: ''
-    };
-  }
-
   componentDidMount() {
     window.Kakao.Auth.createLoginButton({
       container: '#create-kakao-login-btn',
       success: response => this.props.onSuccess(response, this.props.history),
-      fail: response => this.props.onFailure(response)
+      fail: err => this.props.onFailure(err)
     })
   }
 

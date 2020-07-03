@@ -6,7 +6,7 @@ export default class Login extends Component {
     return(
       <div style={{padding: '20px 30px', textAlign: 'center'}}>
         <h1>로그인🍔</h1>
-        <KakaoLoginBtn history={this.props.history}/>
+        <KakaoLoginBtn history={this.props.history} />
       </div>
     )
   }

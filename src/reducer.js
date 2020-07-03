@@ -15,7 +15,8 @@ export default (state, action) => {
     case 'LOGIN':
       return {
         ...state,
-        isLogin: true
+        isLogin: true,
+        userName: action.userName
       };
     case 'LOGIN_FAIL':
       return {
