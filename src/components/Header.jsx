@@ -10,7 +10,32 @@ function mapStateToProps(state) {
   };
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    loginCheck: () => {
+      const userToken = sessionStorage.getItem("userToken");
+      if(userToken) {
+        window.Kakao.Auth.setAccessToken(userToken);
+        window.Kakao.API.request({
+          url: '/v2/user/me',
+          success: res => {
+            console.log('User Info :', res);
+            dispatch({ type: "LOGIN", userName: res.kakao_account.profile.nickname });
+          },
+          fail: err => {
+            console.log('Failed to get user info :', err);
+          }
+        });
+      }
+    }
+  }
+}
+
 class Header extends Component {
+  componentDidMount() {
+    this.props.loginCheck();
+  }
+
   render() {
     return (
       <header style={{height: '120px', textAlign: 'center'}}>
@@ -35,4 +60,4 @@ class Header extends Component {
   }
 }
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

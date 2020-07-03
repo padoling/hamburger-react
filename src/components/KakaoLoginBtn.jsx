@@ -7,19 +7,20 @@ function mapDispatchToProps(dispatch) {
       window.Kakao.API.request({
         url: '/v2/user/me',
         success: res => {
-          console.log('user info :', res);
-          dispatch({ type: "LOGIN", userName: res.kakao_account.profile.nickname});
+          console.log('User info :', res);
+          sessionStorage.setItem("userToken", window.Kakao.Auth.getAccessToken());
+          dispatch({ type: "LOGIN", userName: res.kakao_account.profile.nickname });
+          history.push('/');
         },
         fail: err => {
-          alert('login success, but failed to request user informateion: ', JSON.stringify(err));
+          alert('Login success, but failed to request user informateion: ', JSON.stringify(err));
         }
       })
-      console.log('authObj :', authObj);
-      history.push('/');
+      console.log('Login success. Response :', authObj);
     },
     onFailure: err => {
       dispatch({ type: "LOGIN_FAIL" });
-      alert('login Failed. Error :', err)
+      alert('Login Failed. Error :', err)
     }
   };
 }

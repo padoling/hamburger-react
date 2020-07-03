@@ -28,8 +28,9 @@ function mapDispatchToProps(dispatch) {
         return;
       }
       window.Kakao.Auth.logout(() => {
+        sessionStorage.removeItem("userToken");
         dispatch({ type: "LOGOUT" })
-        console.log('AceessToken :', window.Kakao.Auth.getAccessToken());
+        console.log('Logout Success. AceessToken :', window.Kakao.Auth.getAccessToken());
       })
     }
   }

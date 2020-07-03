@@ -26,7 +26,8 @@ export default (state, action) => {
     case 'LOGOUT':
       return {
         ...state,
-        isLogin: false
+        isLogin: false,
+        userName: ''
       }
     default:
       return initialState;
