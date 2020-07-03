@@ -7,6 +7,11 @@ export default (state, action) => {
         ...state,
         isChecked: !state.isChecked
       };
+    case 'UNCHECK':
+      return {
+        ...state,
+        isChecked: false
+      }
     case 'LOGIN':
       return {
         ...state,

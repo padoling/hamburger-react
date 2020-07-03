@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import KakaoLoginBtn from './KakaoLoginBtn';
+import { Link } from 'react-router-dom';
 import LogoutBtn from './LogoutBtn';
 
 const StyledUl = styled.ul`
@@ -15,14 +15,22 @@ const StyledUl = styled.ul`
   background-color: white;
   z-index: 1;
   transition: max-height .2s ease-out;
+`;
 
-  & li {
-    font-size: 20px;
-    max-height: 49px;
-  }
+const StyledBtn = styled.button`
+  min-width: 222px;
+  height: 49px;
+  line-height: 49px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: white;
+  outline: none;
+  border: 0 none;
+  cursor: pointer;
+  vertical-align: middle;
 
-  & li:hover {
-    background-color: #f1f1f1;
+  &:hover {
+    background-color: #b2bec3;
   }
 `;
 
@@ -33,18 +41,31 @@ function mapStateToProps(state) {
   };
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    onClick: () => {
+      dispatch({type: "UNCHECK"});
+    }
+  }
+}
+
 class DropdownMenu extends Component {
   render() {
     return(
       <StyledUl 
         className='dropdown-menu'
         isChecked={this.props.isChecked}>
-        <li>{this.props.isLogin ? <LogoutBtn /> : <KakaoLoginBtn />}</li>
-        <li>second</li>
-        <li>third</li>
+        <li>{this.props.isLogin ? 
+          <LogoutBtn onClick={this.props.onClick}>로그아웃</LogoutBtn> : 
+          <Link to="/login">
+            <StyledBtn onClick={this.props.onClick}>로그인</StyledBtn>
+          </Link>}
+        </li>
+        <li><StyledBtn onClick={this.props.onClick}>second</StyledBtn></li>
+        <li><StyledBtn onClick={this.props.onClick}>third</StyledBtn></li>
       </StyledUl>
     );
   }
 }
 
-export default connect(mapStateToProps)(DropdownMenu);
+export default connect(mapStateToProps, mapDispatchToProps)(DropdownMenu);
